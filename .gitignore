@@ -1,0 +1,13 @@
+# 公開するのは「送信待ち」以降の店のページだけ。追加するときは下に1行足す
+*
+!.gitignore
+!.nojekyll
+!index.html
+!erutsu.html
+!seeek-hair.html
+!tsuchiya-yuki.html
+!patra.html
+!suncrest.html
+!misuno.html
+!niceme.html
+!nail-salon-run.html
