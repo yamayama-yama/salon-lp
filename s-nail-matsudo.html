@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>S nail</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&family=Noto+Sans+JP:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,400&display=swap">
+<style>
+/* 納品版LP 共通スタイル。色は accent 1色から派生する。 */
+:root {
+  --accent: #8f6a8a;
+  --deep: color-mix(in srgb, var(--accent) 55%, #131a16);
+  --tint: color-mix(in srgb, var(--accent) 8%, #fff);
+  --line: color-mix(in srgb, var(--accent) 24%, #fff);
+  --ink: #1f2622;
+  --muted: #66706a;
+  --stage: #e8ebe8;
+  --white: #fff;
+  --line-green: #06c755;
+  --serif: "Noto Serif JP", "Noto Serif CJK JP", "IPAMincho", serif;
+  --sans: "Noto Sans JP", "Noto Sans CJK JP", "IPAPGothic", sans-serif;
+  --latin: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--stage); color: var(--ink);
+  font-family: var(--sans); font-size: 15px; line-height: 1.9;
+  -webkit-font-smoothing: antialiased; word-break: auto-phrase; line-break: strict;
+}
+a { color: inherit; }
+p, li, dd, summary, figcaption { text-wrap: pretty; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--deep); outline-offset: 3px; }
+
+.page {
+  max-width: 480px; margin: 0 auto; background: var(--white);
+  padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  overflow: hidden;
+}
+
+/* 見本の表示 */
+.sample-bar { background: #1c211e; color: #fff; font-size: 11px; line-height: 1.6; padding: 8px 20px; }
+
+/* ヘッダー */
+.site-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 16px 26px; background: var(--white); }
+.site-head .jp { font-family: var(--serif); font-size: 15px; font-weight: 500; letter-spacing: .1em; }
+.site-head .en { font-family: var(--latin); font-style: italic; font-size: 15px; color: var(--muted); }
+
+/* ヒーロー */
+.hero { position: relative; background: var(--deep); color: #fff; padding: 52px 0 0; }
+.hero .copy { padding: 0 26px; }
+.hero h1 {
+  font-family: var(--serif); font-weight: 300; font-size: 31px; line-height: 1.5; letter-spacing: .05em;
+  max-width: calc(100% - 96px); text-wrap: balance;
+}
+.hero h1 span { display: block; }
+.hero .lead { margin-top: 22px; font-size: 14px; line-height: 1.95; max-width: calc(100% - 96px); color: rgba(255,255,255,.86); }
+.hero.wide h1, .hero.wide .lead { max-width: none; }
+.tagline {
+  position: absolute; right: 24px; top: 56px; height: 240px;
+  writing-mode: vertical-rl; font-family: var(--serif); font-size: 13px; letter-spacing: .26em; line-height: 1.7;
+}
+.tagline span { display: block; white-space: nowrap; }
+.tagline span + span { margin-right: 12px; color: rgba(255,255,255,.7); }
+.hero .cta { margin-top: 30px; }
+.hero .cta-sub { margin-top: 12px; font-size: 12px; letter-spacing: .06em; color: rgba(255,255,255,.82); }
+.hero .art { display: block; width: 100%; height: auto; margin-top: 32px; }
+
+/* 予約ボタン（LINEは緑、それ以外は濃い色） */
+.line-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px;
+  background: var(--line-green); color: #fff; text-decoration: none; font-weight: 700; font-size: 15px;
+  letter-spacing: .06em; padding: 0 26px 0 20px; border-radius: 4px; line-height: 1.2;
+}
+.line-btn.alt { background: #fff; color: var(--deep); padding: 0 26px; }
+.closing .line-btn.alt, .hero .line-btn.alt { background: #fff; color: var(--deep); }
+.offer .line-btn.alt, .reserve-bar .line-btn.alt { background: var(--deep); color: #fff; }
+.line-btn svg { width: 22px; height: 22px; flex: none; }
+.line-btn.block { display: flex; width: 100%; }
+
+/* 共通セクション */
+.sec { padding: 68px 26px 0; }
+.sec h2 { font-family: var(--serif); font-weight: 500; font-size: 22px; letter-spacing: .08em; line-height: 1.5; margin-bottom: 26px; text-wrap: balance; }
+.sec .sub { font-size: 12px; color: var(--muted); line-height: 1.8; }
+
+/* 選ばれる理由 */
+.reasons { border-top: 1px solid var(--line); }
+.reasons article { padding: 22px 0 24px; border-bottom: 1px solid var(--line); }
+.reasons h3 { font-family: var(--serif); font-weight: 500; font-size: 17px; letter-spacing: .06em; margin-bottom: 8px; }
+.reasons p { font-size: 14px; line-height: 1.95; color: #38413c; }
+
+/* デザイン例 */
+.gallery { background: var(--tint); margin-top: 68px; padding: 60px 26px 56px; }
+.gallery h2 { font-family: var(--serif); font-weight: 500; font-size: 22px; letter-spacing: .08em; margin-bottom: 22px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.chip { min-height: 40px; padding: 0 16px; border: 1px solid var(--deep); background: transparent; border-radius: 2px; font-size: 13px; letter-spacing: .06em; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--deep); color: #fff; }
+.designs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; }
+.design { min-width: 0; }
+.design .img { background: var(--white); aspect-ratio: 200 / 118; display: block; }
+.design .img svg, .design .img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.design figcaption { padding-top: 8px; }
+.design .nm { font-family: var(--serif); font-size: 14px; letter-spacing: .04em; line-height: 1.6; }
+.design .pr { font-size: 12px; color: var(--muted); }
+.gallery .foot { margin-top: 30px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.gallery .foot p { font-size: 13px; }
+.ghost-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 1px solid var(--deep); border-radius: 2px; text-decoration: none; font-size: 13px; letter-spacing: .06em; }
+
+/* メニュー */
+.tabs { display: flex; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.tab { flex: 1; min-height: 46px; background: none; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; font-family: var(--serif); font-size: 15px; letter-spacing: .08em; color: var(--muted); cursor: pointer; }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--deep); font-weight: 500; }
+.menu { list-style: none; }
+.menu li { display: grid; grid-template-columns: auto 1fr auto; column-gap: 10px; align-items: baseline; padding: 15px 0 13px; }
+.menu .nm { font-family: var(--serif); font-size: 15.5px; letter-spacing: .03em; line-height: 1.6; }
+.menu .ds { grid-column: 1 / -1; font-size: 12px; color: var(--muted); line-height: 1.7; margin-top: 2px; }
+.menu .lead { border-bottom: 1px dotted color-mix(in srgb, var(--accent) 60%, #fff); min-width: 14px; transform: translateY(-5px); }
+.menu .p { font-family: var(--serif); font-size: 17px; font-weight: 500; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.menu .p small { font-size: 11px; font-weight: 400; margin-left: 1px; }
+.menu-note { margin-top: 14px; font-size: 12px; color: var(--muted); line-height: 1.8; }
+
+/* 初回のご案内（ページで唯一の枠付き要素） */
+.offer { margin: 68px 26px 0; border: 1px solid var(--deep); padding: 34px 24px 30px; text-align: center; }
+.offer .k { font-size: 12px; letter-spacing: .2em; color: var(--muted); }
+.offer .h { font-family: var(--serif); font-weight: 500; font-size: 28px; letter-spacing: .08em; margin: 8px 0 14px; color: var(--deep); }
+.offer p { font-size: 13.5px; line-height: 1.9; }
+.offer .note { font-size: 11.5px; color: var(--muted); margin: 8px 0 22px; }
+
+/* ご予約の流れ（順番に意味があるので番号を付ける） */
+.steps { list-style: none; border-top: 1px solid var(--line); }
+.steps li { display: grid; grid-template-columns: 40px 1fr; padding: 20px 0 22px; border-bottom: 1px solid var(--line); }
+.steps .no { font-family: var(--latin); font-size: 30px; line-height: 1; color: var(--deep); }
+.steps h3 { font-family: var(--serif); font-weight: 500; font-size: 16px; letter-spacing: .05em; margin-bottom: 4px; }
+.steps p { font-size: 13.5px; line-height: 1.9; color: #38413c; }
+
+/* お客様の声 */
+.reviews { border-top: 1px solid var(--line); }
+.reviews blockquote { padding: 22px 0 22px; border-bottom: 1px solid var(--line); }
+.reviews blockquote p { font-size: 14px; line-height: 2; }
+.reviews cite { display: block; margin-top: 8px; font-style: normal; font-size: 12px; color: var(--muted); }
+.reviews-note { margin-top: 12px; font-size: 11.5px; color: var(--muted); line-height: 1.8; }
+
+/* スタッフ */
+.staff { display: grid; grid-template-columns: 88px 1fr; gap: 20px; align-items: start; }
+.staff .avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--deep); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 34px; font-weight: 300; }
+.staff .nm { font-family: var(--serif); font-size: 17px; letter-spacing: .06em; line-height: 1.5; }
+.staff .role { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.staff p { font-size: 13.5px; line-height: 1.95; }
+
+/* よくあるご質問 */
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 18px 0; min-height: 56px; font-family: var(--serif); font-size: 15px; font-weight: 500; line-height: 1.7; letter-spacing: .03em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "＋"; flex: none; color: var(--deep); font-weight: 400; }
+.faq details[open] summary::after { content: "－"; }
+.faq .a { padding: 0 32px 20px 0; font-size: 14px; line-height: 1.95; color: #38413c; }
+
+/* アクセス */
+dl.info { display: grid; grid-template-columns: 112px 1fr; row-gap: 12px; font-size: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+dl.info dt { color: var(--muted); font-size: 12.5px; letter-spacing: .08em; padding-top: 1px; }
+dl.info.hours { margin-top: 18px; }
+.access .btn-row { margin-top: 22px; }
+
+/* 最後の案内 */
+.closing { background: var(--deep); color: #fff; margin-top: 72px; padding: 60px 26px 56px; }
+.closing p.h { font-family: var(--serif); font-weight: 300; font-size: 22px; line-height: 1.7; letter-spacing: .08em; margin-bottom: 14px; text-wrap: balance; }
+.closing p.b { font-size: 13.5px; color: rgba(255,255,255,.84); margin-bottom: 28px; max-width: 24em; }
+
+.site-foot { padding: 28px 26px 12px; font-size: 11.5px; color: var(--muted); line-height: 1.9; }
+.site-foot .nm { font-family: var(--serif); font-size: 14px; color: var(--ink); letter-spacing: .08em; margin-bottom: 4px; }
+
+/* 固定の予約バー */
+.reserve-bar {
+  position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: min(100%, 480px); z-index: 20;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: rgba(255,255,255,.96);
+  border-top: 1px solid var(--line);
+}
+.reserve-bar .line-btn { width: 100%; min-height: 50px; position: relative; }
+.reserve-bar .badge { position: absolute; right: 12px; font-size: 11px; font-weight: 500; letter-spacing: .04em; background: rgba(255,255,255,.22); padding: 3px 8px; border-radius: 2px; }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(86px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 8px);
+  width: min(calc(100% - 32px), 420px); background: var(--ink); color: #fff; font-size: 12.5px; line-height: 1.7;
+  padding: 12px 16px; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 30;
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 359px) {
+  .hero h1 { font-size: 27px; }
+  .designs { gap: 16px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .toast { transition: none; }
+}
+
+</style>
+</head>
+<body>
+<div class="sample-bar">このページは「S nail」様へのご提案用の見本です（作成：はざま）。内容は公開情報（Instagramのプロフィール・予約サイト、2026年10月時点）をもとにしており、写真の代わりにイラストを使っています。</div>
+<div class="page">
+  <header class="site-head"><span class="jp">S nail</span></header>
+  <main>
+
+<section class="hero">
+  <div class="copy">
+    <h1><span>可愛いも大切にしたい、</span><span>大人のネイルサロン。</span></h1>
+    <p class="lead">松戸市五香西、五香駅近くのプライベートサロンです。駐車場あり。</p>
+    <div class="cta"><a class="line-btn alt " data-line href="#" target="_blank" rel="noopener">ネイリーで予約する</a></div>
+    
+  </div>
+  <div class="tagline" aria-hidden="true"><span>五香駅</span><span>大人のプライベートサロン</span></div>
+  <svg class="art" aria-hidden="true" viewBox="0 0 390 140" width="390" height="140"><g transform="translate(50 174) rotate(-13) scale(1.95) translate(-20 -60)"><defs><clipPath id="c1"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 16%, #efdccf)"/><path d="M0 0H40V15Q20 30 0 15Z" fill="#f7f1ec" clip-path="url(#c1)"/><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(125 160) rotate(-6) scale(1.95) translate(-20 -60)"><defs><clipPath id="c2"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="var(--accent)" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(200 154) rotate(0) scale(1.95) translate(-20 -60)"><defs><clipPath id="c3"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 45%, #fff)"/><g clip-path="url(#c3)"><circle cx="12" cy="14" r="1.2" fill="#f7f1ec"/><circle cx="24" cy="10" r="1.75" fill="#d9bf8c"/><circle cx="29" cy="22" r="2.3" fill="#f7f1ec"/><circle cx="15" cy="28" r="1.2" fill="#d9bf8c"/><circle cx="22" cy="36" r="1.75" fill="#f7f1ec"/><circle cx="10" cy="42" r="2.3" fill="#d9bf8c"/><circle cx="28" cy="44" r="1.2" fill="#f7f1ec"/><circle cx="19" cy="50" r="1.75" fill="#d9bf8c"/><circle cx="31" cy="33" r="2.3" fill="#f7f1ec"/><circle cx="14" cy="20" r="1.2" fill="#d9bf8c"/></g><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(275 160) rotate(6) scale(1.95) translate(-20 -60)"><defs><clipPath id="c4"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><linearGradient id="g4" x1="0" y1="1" x2="0" y2="0"><stop offset="0" style="stop-color:color-mix(in srgb, var(--accent) 16%, #efdccf)"/><stop offset=".95" style="stop-color:var(--accent)"/></linearGradient><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="url(#g4)" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(350 174) rotate(13) scale(1.95) translate(-20 -60)"><defs><clipPath id="c5"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="#f7f1ec" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g></svg>
+</section><section class="sec"><h2>選ばれる理由</h2><div class="reasons"><article><h3>フィルインで爪にやさしく</h3><p>フィルイン施術で、自爪への負担を抑えます。</p></article><article><h3>巻爪ジェル・足裏角質ケア</h3><p>ネイルだけでなく、足もとのお悩みにも対応しています。</p></article><article><h3>1日2名さままで</h3><p>ほかのお客様を気にせず過ごせる、プライベートな時間です。</p></article></div></section>
+<section class="gallery">
+  <h2>デザインのイメージ</h2>
+  
+  <div class="designs"><figure class="design" data-cat=""><div class="img"><svg viewBox="0 0 200 118" role="img" aria-label="シンプル"><g transform="translate(38 108) rotate(-5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c6"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="#f7f1ec" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(100 102) rotate(0) scale(1.45) translate(-20 -60)"><defs><clipPath id="c7"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 16%, #efdccf)" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(162 108) rotate(5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c8"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="#f7f1ec" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g></svg></div><figcaption><div class="nm">シンプル</div></figcaption></figure><figure class="design" data-cat=""><div class="img"><svg viewBox="0 0 200 118" role="img" aria-label="ニュアンス"><g transform="translate(38 108) rotate(-5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c9"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><linearGradient id="g9" x1="0" y1="1" x2="0" y2="0"><stop offset="0" style="stop-color:color-mix(in srgb, var(--accent) 16%, #efdccf)"/><stop offset=".95" style="stop-color:var(--accent)"/></linearGradient><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="url(#g9)" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(100 102) rotate(0) scale(1.45) translate(-20 -60)"><defs><clipPath id="c10"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><linearGradient id="g10" x1="0" y1="1" x2="0" y2="0"><stop offset="0" style="stop-color:color-mix(in srgb, var(--accent) 45%, #fff)"/><stop offset=".95" style="stop-color:color-mix(in srgb, var(--accent) 72%, #1d1418)"/></linearGradient><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="url(#g10)" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(162 108) rotate(5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c11"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><linearGradient id="g11" x1="0" y1="1" x2="0" y2="0"><stop offset="0" style="stop-color:#f7f1ec"/><stop offset=".95" style="stop-color:var(--accent)"/></linearGradient><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="url(#g11)" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g></svg></div><figcaption><div class="nm">ニュアンス</div></figcaption></figure><figure class="design" data-cat=""><div class="img"><svg viewBox="0 0 200 118" role="img" aria-label="フット"><g transform="translate(38 108) rotate(-5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c12"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 16%, #efdccf)"/><path d="M0 0H40V15Q20 30 0 15Z" fill="#f7f1ec" clip-path="url(#c12)"/><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(100 102) rotate(0) scale(1.45) translate(-20 -60)"><defs><clipPath id="c13"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 16%, #efdccf)"/><path d="M0 0H40V15Q20 30 0 15Z" fill="var(--accent)" clip-path="url(#c13)"/><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(162 108) rotate(5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c14"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 16%, #efdccf)"/><path d="M0 0H40V15Q20 30 0 15Z" fill="#f7f1ec" clip-path="url(#c14)"/><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g></svg></div><figcaption><div class="nm">フット</div></figcaption></figure><figure class="design" data-cat=""><div class="img"><svg viewBox="0 0 200 118" role="img" aria-label="キッズネイル"><g transform="translate(38 108) rotate(-5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c15"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 45%, #fff)"/><g clip-path="url(#c15)"><circle cx="12" cy="14" r="1.2" fill="#f7f1ec"/><circle cx="24" cy="10" r="1.75" fill="#d9bf8c"/><circle cx="29" cy="22" r="2.3" fill="#f7f1ec"/><circle cx="15" cy="28" r="1.2" fill="#d9bf8c"/><circle cx="22" cy="36" r="1.75" fill="#f7f1ec"/><circle cx="10" cy="42" r="2.3" fill="#d9bf8c"/><circle cx="28" cy="44" r="1.2" fill="#f7f1ec"/><circle cx="19" cy="50" r="1.75" fill="#d9bf8c"/><circle cx="31" cy="33" r="2.3" fill="#f7f1ec"/><circle cx="14" cy="20" r="1.2" fill="#d9bf8c"/></g><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(100 102) rotate(0) scale(1.45) translate(-20 -60)"><defs><clipPath id="c16"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 16%, #efdccf)"/><g clip-path="url(#c16)"><circle cx="12" cy="14" r="1.2" fill="#f7f1ec"/><circle cx="24" cy="10" r="1.75" fill="#d9bf8c"/><circle cx="29" cy="22" r="2.3" fill="#f7f1ec"/><circle cx="15" cy="28" r="1.2" fill="#d9bf8c"/><circle cx="22" cy="36" r="1.75" fill="#f7f1ec"/><circle cx="10" cy="42" r="2.3" fill="#d9bf8c"/><circle cx="28" cy="44" r="1.2" fill="#f7f1ec"/><circle cx="19" cy="50" r="1.75" fill="#d9bf8c"/><circle cx="31" cy="33" r="2.3" fill="#f7f1ec"/><circle cx="14" cy="20" r="1.2" fill="#d9bf8c"/></g><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g><g transform="translate(162 108) rotate(5) scale(1.45) translate(-20 -60)"><defs><clipPath id="c17"><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z"/></clipPath></defs><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="color-mix(in srgb, var(--accent) 45%, #fff)"/><g clip-path="url(#c17)"><circle cx="12" cy="14" r="1.2" fill="#f7f1ec"/><circle cx="24" cy="10" r="1.75" fill="#d9bf8c"/><circle cx="29" cy="22" r="2.3" fill="#f7f1ec"/><circle cx="15" cy="28" r="1.2" fill="#d9bf8c"/><circle cx="22" cy="36" r="1.75" fill="#f7f1ec"/><circle cx="10" cy="42" r="2.3" fill="#d9bf8c"/><circle cx="28" cy="44" r="1.2" fill="#f7f1ec"/><circle cx="19" cy="50" r="1.75" fill="#d9bf8c"/><circle cx="31" cy="33" r="2.3" fill="#f7f1ec"/><circle cx="14" cy="20" r="1.2" fill="#d9bf8c"/></g><path d="M3 52 L3 24 C3 9 11 0 20 0 C29 0 37 9 37 24 L37 52 C37 58 29 60 20 60 C11 60 3 58 3 52 Z" fill="none" stroke="rgba(37,29,32,.14)" stroke-width=".8"/><ellipse cx="12.5" cy="20" rx="2.6" ry="8.5" fill="#fff" opacity=".38" transform="rotate(8 12.5 20)"/></g></svg></div><figcaption><div class="nm">キッズネイル</div></figcaption></figure></div>
+  <div class="foot"><p>実際のページでは、Instagramの投稿写真を掲載します。</p></div>
+</section><section class="sec"><h2>ご予約の流れ</h2><ol class="steps"><li><span class="no">1</span><div><h3>予約ページを開く</h3><p>ボタンから、予約ページを開きます。</p></div></li><li><span class="no">2</span><div><h3>メニューと日時を選ぶ</h3><p>メニューやクーポンを選び、ご希望の日時を指定します。</p></div></li><li><span class="no">3</span><div><h3>予約が完了</h3><p>ネット予約は24時間受け付けています。</p></div></li></ol></section><section class="sec"><h2>よくあるご質問</h2><div class="faq"><details><summary>駐車場はありますか？</summary><p class="a">あります。</p></details><details><summary>営業日を教えてください。</summary><p class="a">月〜土曜日です（土曜日は月2回）。日曜・祝日はお休みです。</p></details></div></section>
+<section class="sec access" id="access">
+  <h2>アクセス</h2>
+  <dl class="info"><dt>エリア</dt><dd>千葉県松戸市五香西（五香駅・松飛台小学校付近）</dd><dt>駐車場</dt><dd>あり</dd></dl>
+  <dl class="info hours"><dt>営業日</dt><dd>月〜土（土曜は月2回）</dd><dt>定休日</dt><dd>日・祝</dd></dl>
+  
+  
+</section>
+<section class="closing">
+  <p class="h">ご予約・ご相談は、予約ページからどうぞ。</p>
+  <p class="b">はじめての方も、お気軽にご連絡ください。</p>
+  <a class="line-btn alt " data-line href="#" target="_blank" rel="noopener">ネイリーで予約する</a>
+</section>
+  </main>
+<footer class="site-foot">
+  <p class="nm">S nail</p>
+  
+  <p>このページは「S nail」様へのご提案用の見本です（作成：はざま）。内容は公開情報（Instagramのプロフィール・予約サイト、2026年10月時点）をもとにしており、写真の代わりにイラストを使っています。</p>
+</footer>
+</div>
+<div class="reserve-bar"><a class="line-btn alt " data-line href="#" target="_blank" rel="noopener">ネイリーで予約する</a></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>window.__LP_SAMPLE=true;window.__LP_TOAST="見本のため、ここでは開きません。実際のページではお店の予約先が開きます。";</script>
+<script>
+(function () {
+  var SAMPLE = !!window.__LP_SAMPLE;
+  var toast = document.getElementById('toast');
+  var timer;
+  function show(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('on');
+    clearTimeout(timer);
+    timer = setTimeout(function () { toast.classList.remove('on'); }, 3400);
+  }
+
+  // 見本ページでは、予約ボタンを押しても外へ出ずに案内だけ出す
+  document.querySelectorAll('[data-line]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (SAMPLE) { e.preventDefault(); show(window.__LP_TOAST || ''); }
+    });
+  });
+
+  // デザイン例の絞り込み
+  var chips = document.querySelectorAll('.chip');
+  var designs = document.querySelectorAll('.design');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var cat = chip.getAttribute('data-cat');
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      designs.forEach(function (d) {
+        d.hidden = !(cat === 'all' || d.getAttribute('data-cat') === cat);
+      });
+    });
+  });
+
+  // メニューの切り替え
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var id = tab.getAttribute('aria-controls');
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+      panels.forEach(function (p) { p.hidden = p.id !== id; });
+    });
+  });
+})();
+
+</script>
+</body>
+</html>
